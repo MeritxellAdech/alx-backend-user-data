@@ -15,7 +15,7 @@ class Auth:
             - False if :path: is in list of :excluded_paths:"""
         if path is None or excluded_paths is None or excluded_paths == []:
             return True
-        accepted_path = path if path.endswith('/') else path + '/'
+        accepted_path = path if path.endswith("/") else path + "/"
         return False if accepted_path in excluded_paths else True
 
     def authorization_header(self, request=None) -> str:
@@ -23,7 +23,9 @@ class Auth:
         Return:
             - None if request is empty
             - Flask request object"""
-        return None
+        if request is None:
+            return None
+        return request.headers.get('Authorization', None)
 
     def current_user(self, request=None) -> TypeVar("User"):
         """Check who is the current user
