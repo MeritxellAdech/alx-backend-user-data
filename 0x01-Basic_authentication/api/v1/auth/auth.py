@@ -11,9 +11,12 @@ class Auth:
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """Check the need for authorization
         Return:
-            - Path if there is the need
-            - False if not"""
-        return False
+            - True if :path: is not in list of :excluded_paths:
+            - False if :path: is in list of :excluded_paths:"""
+        if path is None or excluded_paths is None or excluded_paths == []:
+            return True
+        accepted_path = path if path.endswith('/') else path + '/'
+        return False if accepted_path in excluded_paths else True
 
     def authorization_header(self, request=None) -> str:
         """Check the access level
