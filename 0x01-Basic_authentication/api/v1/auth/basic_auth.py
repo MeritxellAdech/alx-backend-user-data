@@ -5,4 +5,8 @@ from auth import Auth
 
 
 class BasicAuth(Auth):
+    """Basic authentication
+    Inheritance:
+        - from Auth"""
+
     pass
